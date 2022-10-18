@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, Resolver } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import styles from '../styles/form.module.css';
 
 type FormValues = {
