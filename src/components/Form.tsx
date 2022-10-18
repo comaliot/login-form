@@ -1,19 +1,69 @@
 import React from 'react';
+import { useForm, Resolver } from 'react-hook-form';
 import styles from '../styles/form.module.css';
 
+type FormValues = {
+  email: string;
+  password: any;
+};
+
+// const resolver: Resolver<FormValues> = async values => {
+//   return {
+//     values: values.email ? values : {},
+//     errors: !values.email
+//       ? {
+//           email: {
+//             type: 'required',
+//             message: 'This field is required',
+//           },
+//         }
+//       : {},
+//   };
+// };
+
 export default function Form() {
+  const {
+    register, // registers the input and applies validation rules
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+  const onSubmit = handleSubmit(data => console.log(data));
+
   return (
     <div className={styles.form_wrapper}>
-      <form className={styles.form}>
-        <label>
-          Email
-          <input type="email" name="email" placeholder="Email address" />
-        </label>
-        <label>
-          Password
-          <input type="password" name="password" placeholder="Password" />
-        </label>
-        <button className={styles.button}>Sign In</button>
+      <form className={styles.form} onSubmit={onSubmit}>
+        <label htmlFor="email">Email</label>
+
+        <input
+          aria-invalid={errors.email ? 'true' : 'false'}
+          {...register('email', { required: true })}
+          type="email"
+          name="email"
+          placeholder="Email address"
+        />
+        {errors?.email && errors.email.type === 'required' && (
+          // more about role="alert" https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alert_role
+          <span role="alert" className={styles.error}>
+            This field is required
+          </span>
+        )}
+        <label>Password</label>
+        <input
+          aria-invalid={errors.password ? 'true' : 'false'}
+          {...register('password', { required: true })}
+          type="password"
+          name="password"
+          placeholder="Password"
+        />
+        {errors?.email && errors.email.type === 'required' && (
+          // more about role="alert" https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alert_role
+          <span role="alert" className={styles.error}>
+            This field is required
+          </span>
+        )}
+        <button className={styles.button} type="submit">
+          Sign In
+        </button>
       </form>
     </div>
   );

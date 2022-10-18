@@ -6,7 +6,7 @@
 .form label {
   display: flex;
   flex-direction: column;
-  margin: 8px 0;
+  margin-top: 15px;
   font-weight: 700;
   color: #607d8b;
   font-size: 14px;
@@ -18,6 +18,7 @@
   border: 1px solid #cfd8dc;
   margin-top: 5px;
   padding-left: 10px;
+  color: #607d8b;
 }
 
 .form input::placeholder {
@@ -38,4 +39,13 @@
 
 .button:hover {
   background: #4a5ed2;
+}
+
+.error {
+  background: rgb(247, 64, 64);
+  padding: 8px;
+  border-radius: 6px;
+  color: white;
+  margin-top: 10px;
+  font-size: 14px;
 }
