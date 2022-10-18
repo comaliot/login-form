@@ -7,20 +7,6 @@ type FormValues = {
   password: any;
 };
 
-// const resolver: Resolver<FormValues> = async values => {
-//   return {
-//     values: values.email ? values : {},
-//     errors: !values.email
-//       ? {
-//           email: {
-//             type: 'required',
-//             message: 'This field is required',
-//           },
-//         }
-//       : {},
-//   };
-// };
-
 export default function Form() {
   const {
     register, // registers the input and applies validation rules
